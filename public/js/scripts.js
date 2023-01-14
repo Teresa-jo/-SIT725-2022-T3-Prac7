@@ -1,3 +1,4 @@
+
 const getProjects = () => {
     $.get('/api/projects', (response) => {
         if (response.statusCode == 200) {
@@ -48,6 +49,7 @@ const addCards = (items) => {
     });
 }
 
+
 $(document).ready(function () {
     $('.materialboxed').materialbox();
     $('#formSubmit').click(() => {
@@ -56,6 +58,13 @@ $(document).ready(function () {
     getProjects();
     $('.modal').modal();
 });
+
+// connect to the socket
+let socket = io();
+
+socket.on('number', (msg)=>{
+  console.log(msg);
+})
 
 /* function changeText() {
           var textsArray = ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5"] 
